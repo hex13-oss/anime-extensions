@@ -192,8 +192,8 @@ class Hstream :
     override fun episodeListSelector(): String = throw UnsupportedOperationException()
 
     override fun episodeFromElement(element: Element): SEpisode = throw UnsupportedOperationException()
-
-        // ============================ Video Links =============================
+        
+    // ============================ Video Links =============================
     override fun videoListParse(response: Response): List<Video> {
         val doc = response.asJsoup()
 
