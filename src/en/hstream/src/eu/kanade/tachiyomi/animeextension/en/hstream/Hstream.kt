@@ -192,13 +192,13 @@ class Hstream :
     override fun episodeListSelector(): String = throw UnsupportedOperationException()
 
     override fun episodeFromElement(element: Element): SEpisode = throw UnsupportedOperationException()
-        
+
     // ============================ Video Links =============================
     override fun videoListParse(response: Response): List<Video> {
         val doc = response.asJsoup()
 
         val token = client.cookieJar.loadForRequest(response.request.url)
-            .first { it.name.equals("XSRF-TOKEN") }
+            .first { it.name == "XSRF-TOKEN" }
             .value
 
         val episodeId = doc.selectFirst("input#e_id")!!.attr("value")
@@ -255,7 +255,7 @@ class Hstream :
     }
 
     private fun getVideoUrlPath(isLegacy: Boolean, resolution: String): String = if (isLegacy) {
-        if (resolution.equals("720")) {
+        if (resolution == "720") {
             "/x264.720p.mp4"
         } else {
             "/av1.$resolution.webm"
